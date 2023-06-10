@@ -63,6 +63,7 @@ public class landingPage {
     public String cucumberProductNameValidation(){
         return cucumberProductName.getText();
     }
+   /*
     public void searchProduct(String string){
         searchProducts.sendKeys(string);
         System.out.println(productName.getText());
@@ -70,8 +71,11 @@ public class landingPage {
         //wait.until(ExpectedConditions.visibilityOf(productName));
     }
 
+    */
+public void searchProduct(String names){
+    wait.until(ExpectedConditions.visibilityOf(searchProducts));
+    searchProducts.sendKeys(names);
 
-
-
+}
 
 }

@@ -18,3 +18,15 @@ Feature: Add to cart and checkout
       | cucumber |
     Then validate product is visible
 
+  Scenario Outline: Login using Different Data Set 2
+    Given open url
+    When you search products and enter <Names>
+    Then validate product is visible two
+
+    Examples:
+    | Names |
+    | Beans |
+    | cucumber |
+    | Broccoli |
+    | Beetroot |
+
