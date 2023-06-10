@@ -13,10 +13,12 @@ public class landingPage {
     WebDriver driver;
     WebDriverWait wait;
 
+
     public landingPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
         wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+
     }
     @FindBy(xpath = "//*[@id=\"root\"]/div/div[1]/div/div[3]/div[2]/a[2]")
     public WebElement cucumberPlus;
@@ -31,6 +33,16 @@ public class landingPage {
     public WebElement brandGreenLogo;
     @FindBy(xpath = "//h4[contains(text(),'Cucumber - 1 Kg')]")
     public WebElement cucumberProductName;
+
+    @FindBy(xpath = "//input[@type=\"search\"]")
+    public WebElement searchProducts;
+
+
+    @FindBy(xpath = " //h4[@class=\"product-name\"]")
+    public WebElement productName;
+
+
+
 
 
 
@@ -51,6 +63,13 @@ public class landingPage {
     public String cucumberProductNameValidation(){
         return cucumberProductName.getText();
     }
+    public void searchProduct(String string){
+        searchProducts.sendKeys(string);
+        System.out.println(productName.getText());
+        searchProducts.clear();
+        //wait.until(ExpectedConditions.visibilityOf(productName));
+    }
+
 
 
 
