@@ -51,7 +51,7 @@ public class TestBase {
                 options.addArguments("--window-size=1920x1080");
                 options.addArguments("--no-sandbox");
                 options.addArguments("--disable-dev-shm-usage");
-                options.addArguments("--no-sendbox");
+                options.addArguments("--disable-gpu");
                 driver = new ChromeDriver(options);
                 Log.info("You have initialized Chrome in headless mode");
                 navigate();

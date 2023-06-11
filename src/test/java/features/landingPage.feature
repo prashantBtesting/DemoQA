@@ -27,6 +27,6 @@ Feature: Add to cart and checkout
     | Names |
     | Beans |
     | cucumber |
-    | Broccoli |
+    | B |
     | Beetroot |
 

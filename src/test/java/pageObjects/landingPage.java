@@ -38,10 +38,8 @@ public class landingPage {
     public WebElement searchProducts;
 
 
-    @FindBy(xpath = " //h4[@class=\"product-name\"]")
+    @FindBy(xpath = "//h4[@class=\"product-name\"]")
     public WebElement productName;
-
-
 
 
 
