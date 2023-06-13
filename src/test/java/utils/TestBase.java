@@ -18,6 +18,10 @@ import java.util.Properties;
 public class TestBase {
     public  WebDriver driver;
     public Properties properties;
+    public static final String USERNAME = "prashantbabar_nGO8JI";
+    public static final String ACCESS_KEY = "Dxe8CsKog9CxfhwynFrp";
+    public static final String URL = "https://" + USERNAME + ":" + ACCESS_KEY +
+            "@hub-cloud.browserstack.com/wd/hub";
 
     public WebDriver initializeDriver() throws IOException {
         if(driver==null) {
@@ -58,14 +62,19 @@ public class TestBase {
             }
             else if (browser.equalsIgnoreCase("Remote")) {
                 //BrowserStack Integration
-
                 DesiredCapabilities caps = new DesiredCapabilities();
                 caps.setCapability("browser", "Chrome");
                 caps.setCapability("browser_version", "91.0");
                 caps.setCapability("os", "Windows");
                 caps.setCapability("os_version", "10");
-                caps.setCapability("name", "My First Test2");
+                caps.setCapability("name", "DemoQATest");
+
+                WebDriver driver = new RemoteWebDriver(new URL(URL), caps);
+               // driver.get("https://rahulshettyacademy.com/seleniumPractise/#/");
+              //  System.out.println(driver.getTitle());
                // WebDriver driver = new RemoteWebDriver(new URL(URL), caps);
+                Log.info("You have initialized Chrome in headless mode");
+                navigate();
             } else {
                 Log.error("There is some error in Browser name");
             }
