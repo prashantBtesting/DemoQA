@@ -22,7 +22,9 @@ public class landingPageStepDefinition {
 
     @When("select the Cucumber and click on add to cart button")
     public void select_the_cucumber_and_click_on_add_to_cart_button() {
-        tcs.POM.getLandingPage().addToCart();
+        tcs.POM.getLandingPage().myBag();
+        tcs.POM.getCheckoutPage().calculatePriceInCartPreview();
+        tcs.POM.getLandingPage().proceedToCheckout();
     }
 
     @Given("open url")
@@ -54,16 +56,27 @@ public class landingPageStepDefinition {
 
     @When("^you search products and enter (.+)$")
     public void you_search_product_and_enter(String Names) {
-       tcs.POM.getLandingPage().searchProduct(Names);
-        System.out.println(Names);
-        Assert.assertTrue(tcs.POM.getLandingPage().productName.isDisplayed());
-        System.out.println(tcs.POM.getLandingPage().productName);
+        tcs.POM.getLandingPage().searchProduct(Names);
+        System.out.println("Product Name is: "+ Names);
+
+
     }
 
     @Then("validate product is visible two")
     public void validate_product_is_visible_two() {
+        Assert.assertTrue(tcs.POM.getLandingPage().productName.isDisplayed());
+        System.out.println(tcs.POM.getLandingPage().productName);
 
+    }
 
+    @Then("enter the random quantity and calculate the price.")
+    public void enter_the_random_quantity_and_calculate_the_price() throws InterruptedException {
+        Thread.sleep(2000);
+        tcs.POM.getLandingPage().enterRandomProductQuantity();
+        Thread.sleep(2000);
+        tcs.POM.getLandingPage().addToCartB();
+        tcs.POM.getLandingPage().myBag();
+        tcs.POM.getCheckoutPage().calculatePriceInCartPreview();
     }
 
 

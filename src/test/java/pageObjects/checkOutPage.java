@@ -6,6 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import java.time.Duration;
 import java.util.Arrays;
@@ -14,7 +15,6 @@ import java.util.Random;
 import java.util.Set;
 
 public class checkOutPage {
-    WebDriver driver;
     Random random;
     WebDriverWait wait;
     public checkOutPage(WebDriver driver){
@@ -30,6 +30,16 @@ public class checkOutPage {
     public WebElement applyButtonCheckoutPage;
     @FindBy(xpath = "//p[contains(text(),'Cucumber - 1 Kg')]")
     public WebElement cucumberProductNameCheckoutPage;
+
+    @FindBy(css = "div[class='cart-preview active'] div div p[class='quantity']")
+    public WebElement cartPreviewActiveQuantity;
+
+    @FindBy(css="div[class='cart-preview active'] div div p[class='amount']")
+    public WebElement cartPreviewActiveTotalPrice;
+
+    @FindBy(css="div[class='cart-preview active'] div div p[class='product-price']")
+    public WebElement cartPreviewActiveProductPrice;
+
 
 
 
@@ -56,6 +66,24 @@ public class checkOutPage {
     }
     public String validateProductNameOnCheckoutPage(){
         return cucumberProductNameCheckoutPage.getText();
+    }
+
+    public void calculatePriceInCartPreview(){
+    wait.until(ExpectedConditions.elementToBeClickable(cartPreviewActiveQuantity));
+    int productQuantity = Integer.parseInt(cartPreviewActiveQuantity.getText().replaceAll("[^0-9]", ""));
+
+        wait.until(ExpectedConditions.elementToBeClickable(cartPreviewActiveTotalPrice));
+        System.out.println("Product Quantity is: "+ productQuantity);
+       int productTotalPrice= Integer.parseInt(cartPreviewActiveTotalPrice.getText().replaceAll("[^0-9]", ""));
+        System.out.println("Product Total Price is: "+productTotalPrice);
+        wait.until(ExpectedConditions.elementToBeClickable(cartPreviewActiveProductPrice));
+        int productPrice= Integer.parseInt(cartPreviewActiveProductPrice.getText().replaceAll("[^0-9]", ""));
+        System.out.println("Product Price is: "+productPrice);
+
+        int ActualProductTotalPrice;
+        ActualProductTotalPrice = productPrice*productQuantity;
+        Assert.assertEquals(ActualProductTotalPrice, productTotalPrice);
+
     }
 
 

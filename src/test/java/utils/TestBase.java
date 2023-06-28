@@ -5,6 +5,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
@@ -25,7 +26,9 @@ public class TestBase {
 
     public WebDriver initializeDriver() throws IOException {
         if(driver==null) {
-            String browser = loadProperties("webBrowser");
+            String browserProperties = loadProperties("browser");
+           String browserMaven = System.getProperty(("browser"));
+           String browser = browserMaven!=null ? browserMaven :browserProperties;
             Log.info(browser);
             if (browser.equalsIgnoreCase("Chrome")) {
                 ChromeOptions ops = new ChromeOptions();
@@ -35,8 +38,10 @@ public class TestBase {
                 //Log.info("You have initialized a Chrome driver");
                 navigate();
             } else if (browser.equalsIgnoreCase("Firefox")) {
-                System.setProperty("webdriver.gecko.driver", "src/main/java/resources/drivers/geckodriver");
-                driver = new FirefoxDriver();
+                System.setProperty("webdriver.gecko.driver", "src/test/resources/geckodriver.exe");
+                FirefoxOptions options = new FirefoxOptions();
+                options.setBinary("C:\\Program Files\\Mozilla Firefox\\firefox.exe");
+                driver = new FirefoxDriver(options);
                 Log.info("You have initialized a Firefox driver");
                 navigate();
             } else if (browser.equalsIgnoreCase("Edge")) {

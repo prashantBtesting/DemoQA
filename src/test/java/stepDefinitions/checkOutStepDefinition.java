@@ -14,7 +14,7 @@ public class checkOutStepDefinition {
     @Then("Go to checkout page and proceed to checkout")
     public void go_to_checkout_page_and_proceed_to_checkout() {
         tcs.POM.getCheckoutPage().validateApplyBtn();
-        Assert.assertEquals(tcs.POM.getCheckoutPage().validateErrorCodeMessage(), "Empy code ..!");
+        Assert.assertEquals(tcs.POM.getCheckoutPage().validateErrorCodeMessage(), "Empty code ..!");
     }
 
     @Then("check whether  added product displayed properly")

@@ -1,5 +1,7 @@
 Feature: Add to cart and checkout
 
+
+
   Scenario: checkout the calculation of cart value
     Given  user is on GreenCart landing page
     When select the Cucumber and click on add to cart button
@@ -29,4 +31,18 @@ Feature: Add to cart and checkout
     | cucumber |
     | B |
     | Beetroot |
+
+  @heckout
+  Scenario Outline: Login using Different Data Set 2
+    Given open url
+    When you search products and enter <Names>
+    Then enter the random quantity and calculate the price.
+
+    Examples:
+      | Names |
+      | Beans |
+      | cucumber |
+      | Tomato |
+      | Beetroot |
+
 
