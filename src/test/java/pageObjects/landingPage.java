@@ -106,6 +106,12 @@ public void enterRandomProductQuantity(){
     productQuantityNumberBox.sendKeys(size);
 
 }
+public void  enterRandomProductQuantityInMinus(){
+    String count = "-33";
+    wait.until(ExpectedConditions.elementToBeClickable(productQuantityNumberBox));
+    productQuantityNumberBox.clear();
+    productQuantityNumberBox.sendKeys(count);
+}
 public void addToCartB(){
     addToCart.click();
 }

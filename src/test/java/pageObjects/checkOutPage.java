@@ -17,11 +17,13 @@ import java.util.Set;
 public class checkOutPage {
     Random random;
     WebDriverWait wait;
-    public checkOutPage(WebDriver driver){
+
+    public checkOutPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
-        wait= new WebDriverWait(driver, Duration.ofSeconds(20));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         random = new Random();
     }
+
     @FindBy(css = "span.promoInfo")
     public WebElement PromoInfoErrorMessage;
     @FindBy(css = "button.promoBtn")
@@ -34,62 +36,60 @@ public class checkOutPage {
     @FindBy(css = "div[class='cart-preview active'] div div p[class='quantity']")
     public WebElement cartPreviewActiveQuantity;
 
-    @FindBy(css="div[class='cart-preview active'] div div p[class='amount']")
+    @FindBy(css = "div[class='cart-preview active'] div div p[class='amount']")
     public WebElement cartPreviewActiveTotalPrice;
 
-    @FindBy(css="div[class='cart-preview active'] div div p[class='product-price']")
+    @FindBy(css = "div[class='cart-preview active'] div div p[class='product-price']")
     public WebElement cartPreviewActiveProductPrice;
 
 
-
-
-
-    public String validateErrorCodeMessage(){
+    public String validateErrorCodeMessage() {
         wait.until(ExpectedConditions.visibilityOf(applyBtn));
         applyBtn.click();
         wait.until(ExpectedConditions.visibilityOf(PromoInfoErrorMessage));
-        String Ab=  PromoInfoErrorMessage.getText();
+        String Ab = PromoInfoErrorMessage.getText();
         return Ab;
     }
-    public void randomPromoCodes(){
+
+    public void randomPromoCodes() {
         Set<String> randomCodes = new HashSet<>((Arrays.asList("advg", "zxhi", "opwm")));
 
     }
-    public void validateApplyBtn (){
+
+    public void validateApplyBtn() {
         wait.until(ExpectedConditions.visibilityOf(applyButtonCheckoutPage));
-        if (applyButtonCheckoutPage.isDisplayed()){
+        if (applyButtonCheckoutPage.isDisplayed()) {
             System.out.println("apply button displayed");
-        }else {
+        } else {
             System.out.println("apply button not displayed");
 
         }
     }
-    public String validateProductNameOnCheckoutPage(){
+
+    public String validateProductNameOnCheckoutPage() {
         return cucumberProductNameCheckoutPage.getText();
     }
 
-    public void calculatePriceInCartPreview(){
-    wait.until(ExpectedConditions.elementToBeClickable(cartPreviewActiveQuantity));
-    int productQuantity = Integer.parseInt(cartPreviewActiveQuantity.getText().replaceAll("[^0-9]", ""));
+    public boolean calculatePriceInCartPreview() {
+        wait.until(ExpectedConditions.elementToBeClickable(cartPreviewActiveQuantity));
+        int productQuantity = Integer.parseInt(cartPreviewActiveQuantity.getText().replaceAll("[^\\-\\d]", ""));
 
         wait.until(ExpectedConditions.elementToBeClickable(cartPreviewActiveTotalPrice));
-        System.out.println("Product Quantity is: "+ productQuantity);
-       int productTotalPrice= Integer.parseInt(cartPreviewActiveTotalPrice.getText().replaceAll("[^0-9]", ""));
-        System.out.println("Product Total Price is: "+productTotalPrice);
+        System.out.println("Product Quantity is: " + productQuantity);
+        int productTotalPrice = Integer.parseInt(cartPreviewActiveTotalPrice.getText().replaceAll("[^\\-\\d]", ""));
+        System.out.println("Product Total Price is: " + productTotalPrice);
         wait.until(ExpectedConditions.elementToBeClickable(cartPreviewActiveProductPrice));
-        int productPrice= Integer.parseInt(cartPreviewActiveProductPrice.getText().replaceAll("[^0-9]", ""));
-        System.out.println("Product Price is: "+productPrice);
+        int productPrice = Integer.parseInt(cartPreviewActiveProductPrice.getText().replaceAll("[^\\-\\d]", ""));
+        System.out.println("Product Price is: " + productPrice);
 
         int ActualProductTotalPrice;
-        ActualProductTotalPrice = productPrice*productQuantity;
+        ActualProductTotalPrice = productPrice * productQuantity;
         Assert.assertEquals(ActualProductTotalPrice, productTotalPrice);
-
+        if (cartPreviewActiveTotalPrice.getText().contains("-")){
+            return true;
+        }
+        return true;
     }
-
-
-
-
-
 
 
 }

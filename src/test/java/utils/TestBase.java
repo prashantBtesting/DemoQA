@@ -10,14 +10,13 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Properties;
 
 public class TestBase {
-    public  WebDriver driver;
+    public WebDriver driver;
     public Properties properties;
     public static final String USERNAME = "prashantbabar_nGO8JI";
     public static final String ACCESS_KEY = "Dxe8CsKog9CxfhwynFrp";
@@ -25,10 +24,10 @@ public class TestBase {
             "@hub-cloud.browserstack.com/wd/hub";
 
     public WebDriver initializeDriver() throws IOException {
-        if(driver==null) {
+        if (driver == null) {
             String browserProperties = loadProperties("browser");
-           String browserMaven = System.getProperty(("browser"));
-           String browser = browserMaven!=null ? browserMaven :browserProperties;
+            String browserMaven = System.getProperty(("browser"));
+            String browser = browserMaven != null ? browserMaven : browserProperties;
             Log.info(browser);
             if (browser.equalsIgnoreCase("Chrome")) {
                 ChromeOptions ops = new ChromeOptions();
@@ -52,8 +51,8 @@ public class TestBase {
                 driver = new SafariDriver();
                 Log.info("You have initialized a Safari driver");
                 navigate();
-            } else if(browser.equalsIgnoreCase("Chrome headless")){
-                System.setProperty("webdriver.chrome.driver", "src/main/java/resources/drivers/chromedriver.exe");
+            } else if (browser.equalsIgnoreCase("Chrome headless")) {
+                System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
                 ChromeOptions options = new ChromeOptions();
                 options.addArguments("--remote-allow-origins=*");
                 options.addArguments("--headless");
@@ -64,8 +63,7 @@ public class TestBase {
                 driver = new ChromeDriver(options);
                 Log.info("You have initialized Chrome in headless mode");
                 navigate();
-            }
-            else if (browser.equalsIgnoreCase("Remote")) {
+            } else if (browser.equalsIgnoreCase("BrowserStackTests")) {
                 //BrowserStack Integration
                 DesiredCapabilities caps = new DesiredCapabilities();
                 caps.setCapability("browser", "Chrome");
@@ -73,12 +71,9 @@ public class TestBase {
                 caps.setCapability("os", "Windows");
                 caps.setCapability("os_version", "10");
                 caps.setCapability("name", "DemoQATest");
-
-                WebDriver driver = new RemoteWebDriver(new URL(URL), caps);
-               // driver.get("https://rahulshettyacademy.com/seleniumPractise/#/");
-              //  System.out.println(driver.getTitle());
-               // WebDriver driver = new RemoteWebDriver(new URL(URL), caps);
-                Log.info("You have initialized Chrome in headless mode");
+                caps.setCapability("buildName", "DemoQATestKartiki");
+                driver = new RemoteWebDriver(new URL(URL), caps);
+                Log.info("You have initialized Chrome in Browserstack");
                 navigate();
             } else {
                 Log.error("There is some error in Browser name");
@@ -87,12 +82,14 @@ public class TestBase {
         }
         return driver;
     }
+
     public String loadProperties(String property) throws IOException {
-        properties=new Properties();
-        FileInputStream dataFile=new FileInputStream("src/test/resources/global.properties");
+        properties = new Properties();
+        FileInputStream dataFile = new FileInputStream("src/test/resources/global.properties");
         properties.load(dataFile);
         return properties.getProperty(property);
     }
+
     public void navigate() throws IOException {
         driver.manage().window().maximize();
         driver.get(loadProperties("url"));

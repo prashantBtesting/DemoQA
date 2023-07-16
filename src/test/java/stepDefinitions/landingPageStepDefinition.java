@@ -23,7 +23,7 @@ public class landingPageStepDefinition {
     @When("select the Cucumber and click on add to cart button")
     public void select_the_cucumber_and_click_on_add_to_cart_button() {
         tcs.POM.getLandingPage().myBag();
-        tcs.POM.getCheckoutPage().calculatePriceInCartPreview();
+       tcs.POM.getCheckoutPage().calculatePriceInCartPreview();
         tcs.POM.getLandingPage().proceedToCheckout();
     }
 
@@ -59,7 +59,6 @@ public class landingPageStepDefinition {
         tcs.POM.getLandingPage().searchProduct(Names);
         System.out.println("Product Name is: "+ Names);
 
-
     }
 
     @Then("validate product is visible two")
@@ -78,6 +77,28 @@ public class landingPageStepDefinition {
         tcs.POM.getLandingPage().myBag();
         tcs.POM.getCheckoutPage().calculatePriceInCartPreview();
     }
+
+    @Then("enter the random quantity in minus")
+    public void enter_the_random_quantity_in_minus() throws InterruptedException {
+        Thread.sleep(2000);
+        tcs.POM.getLandingPage().enterRandomProductQuantityInMinus();
+        tcs.POM.getLandingPage().addToCartB();
+        tcs.POM.getLandingPage().myBag();
+        Assert.assertTrue(tcs.POM.getCheckoutPage().calculatePriceInCartPreview());
+
+    }
+
+    @When("url is opened click on flight booking btn")
+    public void url_is_opened_click_on_flight_booking_btn() {
+        tcs.POM.getFlightBookingPage().openFlightBooking();
+        tcs.POM.getFlightBookingPage().hotelsBtn.click();
+        Assert.assertEquals(tcs.base.driver.getTitle(), "GreenKart - veg and fruits kart");
+    }
+    @Then("check flight booking window is opened and validate the title")
+    public void check_flight_booking_window_is_opened_and_validate_the_title() {
+
+    }
+
 
 
 }

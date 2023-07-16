@@ -82,6 +82,7 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
     <build>
         <plugins>
             <!-- Maven Surefire Plugin -->
@@ -89,16 +90,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0-M5</version>
-                <configuration>
-                    <includes>
-                        <include>TestRunnerQA_Parallel.java</include>
-                        <include></include>
-                    </includes>
-                    <parallel>
-                    </parallel>
-                    <threadCount>
-                    </threadCount>
-                </configuration>
             </plugin>
 
         </plugins>
