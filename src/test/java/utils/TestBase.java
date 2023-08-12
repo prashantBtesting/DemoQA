@@ -71,7 +71,7 @@ public class TestBase {
                 caps.setCapability("os", "Windows");
                 caps.setCapability("os_version", "10");
                 caps.setCapability("name", "DemoQATest");
-                caps.setCapability("buildName", "DemoQATestKartiki");
+                caps.setCapability("buildName", "DemoQATestFlightBooking");
                 driver = new RemoteWebDriver(new URL(URL), caps);
                 Log.info("You have initialized Chrome in Browserstack");
                 navigate();

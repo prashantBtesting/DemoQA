@@ -1,12 +1,15 @@
 package pageObjects;
 
 import org.openqa.selenium.WebDriver;
+import utils.GenericUtilsPage;
+
 
 public class PageObjectManager {
     WebDriver driver;
     landingPage landingPage;
     checkOutPage checkoutPage;
     flightBookingPage flightBookingPage;
+    GenericUtilsPage GenericUtilsPage;
 
     public PageObjectManager(WebDriver driver) {
         this.driver = driver;
@@ -23,5 +26,9 @@ public class PageObjectManager {
     public flightBookingPage getFlightBookingPage(){
         flightBookingPage = new flightBookingPage(driver);
         return flightBookingPage;
+    }
+    public GenericUtilsPage getGenericUtilsPage(){
+        GenericUtilsPage = new GenericUtilsPage(driver);
+        return GenericUtilsPage;
     }
 }

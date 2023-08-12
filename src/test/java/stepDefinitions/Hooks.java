@@ -23,11 +23,11 @@ public Hooks(TestContextSetup tcs){
 
 }
 
-    @After
+  //  @After
     public void AfterScenario() throws IOException {
     tcs.base.initializeDriver().quit();
 }
-@AfterStep
+    @AfterStep
     public void AddScreenshot(Scenario scenario) throws IOException {
 
     WebDriver driver =tcs.base.initializeDriver();

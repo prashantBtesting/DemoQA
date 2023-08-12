@@ -6,13 +6,13 @@ Feature: Add to cart and checkout
     When select the Cucumber and click on add to cart button
     Then Go to checkout page and proceed to checkout
 
-  @new
+
   Scenario: Checkout the product name displayed properly in Checkout page
     Given user is on GreenCart landing page
     When select the Cucumber and click on add to cart button
     Then check whether  added product displayed properly
 
-
+  @new
   Scenario: Login using Different Data Set
     Given open url
     When you search product and enter data
@@ -58,7 +58,7 @@ Feature: Add to cart and checkout
       | Names  |
       | Tomato |
 
-  @new
+  @new3
   Scenario: Login using Different Data Set 3
     Given open url
     When url is opened click on flight booking btn
@@ -72,5 +72,17 @@ Feature: Add to cart and checkout
     Then  radio buttons should be accessible and validated one by one
     Examples:
       | radiobutton |
-      | one way |
+      | one way     |
 
+  @flightt
+  Scenario: select dropdown
+    Given user is on flightBooking site2
+    When clicks on dropdown
+    Then select value
+
+  @flight
+  Scenario: select dropdown from flight from list
+    Given user is on flightBooking site2
+    When user clicked on dropdown from departure list randomly
+    And user clicked on destination dropdown
+    Then show both locations

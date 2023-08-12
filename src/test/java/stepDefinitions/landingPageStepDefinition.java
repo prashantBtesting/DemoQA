@@ -23,7 +23,7 @@ public class landingPageStepDefinition {
     @When("select the Cucumber and click on add to cart button")
     public void select_the_cucumber_and_click_on_add_to_cart_button() {
         tcs.POM.getLandingPage().myBag();
-       tcs.POM.getCheckoutPage().calculatePriceInCartPreview();
+        tcs.POM.getCheckoutPage().calculatePriceInCartPreview();
         tcs.POM.getLandingPage().proceedToCheckout();
     }
 
@@ -57,7 +57,7 @@ public class landingPageStepDefinition {
     @When("^you search products and enter (.+)$")
     public void you_search_product_and_enter(String Names) {
         tcs.POM.getLandingPage().searchProduct(Names);
-        System.out.println("Product Name is: "+ Names);
+        System.out.println("Product Name is: " + Names);
 
     }
 
@@ -94,11 +94,43 @@ public class landingPageStepDefinition {
         tcs.POM.getFlightBookingPage().hotelsBtn.click();
         Assert.assertEquals(tcs.base.driver.getTitle(), "GreenKart - veg and fruits kart");
     }
+
     @Then("check flight booking window is opened and validate the title")
     public void check_flight_booking_window_is_opened_and_validate_the_title() {
+        tcs.POM.getFlightBookingPage().openFlightBooking();
+    }
+
+    @Given("user is on flightBooking site2")
+    public void user_is_on_flight_booking_site2() {
+        tcs.POM.getFlightBookingPage().openFlightBooking();
 
     }
 
+    @When("clicks on dropdown")
+    public void clicks_on_dropdown() {
+        tcs.POM.getFlightBookingPage().currencySelect();
+    }
+
+    @Then("select value")
+    public void select_value() {
+
+    }
+
+    @When("user clicked on dropdown from departure list randomly")
+    public void user_clicked_on_dropdown_from_departure_list_randomly() {
+        tcs.POM.getFlightBookingPage().selectFlightFromDepartureAndDestination();
+        tcs.POM.getFlightBookingPage().selectRandomCheckBox();
+    }
+
+    @When("user clicked on destination dropdown")
+    public void user_clicked_on_destination_dropdown() {
+
+    }
+
+    @Then("show both locations")
+    public void show_both_locations() {
+
+    }
 
 
 }
