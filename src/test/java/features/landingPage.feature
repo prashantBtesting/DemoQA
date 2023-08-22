@@ -12,7 +12,7 @@ Feature: Add to cart and checkout
     When select the Cucumber and click on add to cart button
     Then check whether  added product displayed properly
 
-  @new
+  @Regression
   Scenario: Login using Different Data Set
     Given open url
     When you search product and enter data
@@ -21,7 +21,7 @@ Feature: Add to cart and checkout
       | cucumber |
     Then validate product is visible
 
-  @new
+  @Regression
   Scenario Outline: Login using Different Data Set 1
     Given open url
     When you search products and enter <Names>
@@ -58,7 +58,7 @@ Feature: Add to cart and checkout
       | Names  |
       | Tomato |
 
-  @new3
+  @Regression
   Scenario: Login using Different Data Set 3
     Given open url
     When url is opened click on flight booking btn
@@ -74,13 +74,13 @@ Feature: Add to cart and checkout
       | radiobutton |
       | one way     |
 
-  @flightt
+  @Regression
   Scenario: select dropdown
     Given user is on flightBooking site2
     When clicks on dropdown
     Then select value
 
-  @flight
+  @Regression
   Scenario: select dropdown from flight from list
     Given user is on flightBooking site2
     When user clicked on dropdown from departure list randomly

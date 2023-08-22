@@ -32,8 +32,8 @@ public class flightBookingPage {
     @FindBy(xpath = "//a[text()='Flight Booking']")
     public WebElement flightBookingBtn;
 
-    @FindBy(xpath = "//table[@id='ctl00_mainContent_rbtnl_Trip']/child::*/child::*/child::*")
-    public WebElement radioButtons;
+   // @FindBy(xpath = "//table[@id='ctl00_mainContent_rbtnl_Trip']/child::*/child::*/child::*")
+   // public WebElement radioButtons;
 
     @FindBy(xpath = "//span[normalize-space()='Hotels']")
     public WebElement hotelsBtn;
@@ -46,6 +46,7 @@ public class flightBookingPage {
     By departureFlightsLocations = By.xpath("(//td[@class='mapbg'])[1]//ul/li/a");
     By destinationFlightsLocations = By.xpath("(//td[@class='mapbg'])[2]//ul/li/a");
     By checkBoxes = By.xpath("//input[@type='checkbox']/ancestor::div[@id='discount-checkbox']//input");
+    By radioButtons = By.xpath("//input[@type='radio']/ancestor::table[@class='tblTrip']//input");
 
     public void openFlightBooking() {
         wait.until(ExpectedConditions.elementToBeClickable(flightBookingBtn));
@@ -54,7 +55,6 @@ public class flightBookingPage {
         for (String windowHandle : allWindowHandles) {
             driver.switchTo().window(windowHandle);
         }
-
     }
 
     public void currencySelect() {
@@ -97,6 +97,15 @@ public class flightBookingPage {
         checkBox.click();
         System.out.println(checkBoxText);
 
+    }
+
+    public void radioButtons(){
+        wait.until(ExpectedConditions.elementToBeClickable(radioButtons));
+        WebElement radioBtn = selectRandomElement(driver.findElements(radioButtons));
+        wait.until(ExpectedConditions.visibilityOf(radioBtn));
+        String radioBtnText = radioBtn.getText();
+        radioBtn.click();
+        System.out.println(radioBtnText);
     }
 
 }

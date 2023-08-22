@@ -118,8 +118,10 @@ public class landingPageStepDefinition {
 
     @When("user clicked on dropdown from departure list randomly")
     public void user_clicked_on_dropdown_from_departure_list_randomly() {
+
         tcs.POM.getFlightBookingPage().selectFlightFromDepartureAndDestination();
         tcs.POM.getFlightBookingPage().selectRandomCheckBox();
+        tcs.POM.getFlightBookingPage().radioButtons();
     }
 
     @When("user clicked on destination dropdown")

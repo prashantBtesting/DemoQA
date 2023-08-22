@@ -23,7 +23,7 @@ public Hooks(TestContextSetup tcs){
 
 }
 
-  //  @After
+    @After
     public void AfterScenario() throws IOException {
     tcs.base.initializeDriver().quit();
 }
