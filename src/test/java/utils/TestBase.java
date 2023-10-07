@@ -18,9 +18,9 @@ import java.util.Properties;
 public class TestBase {
     public WebDriver driver;
     public Properties properties;
-    public static final String USERNAME = "prashantbabar_nGO8JI";
-    public static final String ACCESS_KEY = "Dxe8CsKog9CxfhwynFrp";
-    public static final String URL = "https://" + USERNAME + ":" + ACCESS_KEY +
+    private static final String USERNAME = "prashantbabar_nGO8JI";
+    private static final String ACCESS_KEY = "Dxe8CsKog9CxfhwynFrp";
+    private static final String URL = "https://" + USERNAME + ":" + ACCESS_KEY +
             "@hub-cloud.browserstack.com/wd/hub";
 
     public WebDriver initializeDriver() throws IOException {
@@ -30,10 +30,10 @@ public class TestBase {
             String browser = browserMaven != null ? browserMaven : browserProperties;
             Log.info(browser);
             if (browser.equalsIgnoreCase("Chrome")) {
-                ChromeOptions ops = new ChromeOptions();
-                ops.addArguments("--remote-allow-origins=*");
+                ChromeOptions options = new ChromeOptions();
+                options.addArguments("--remote-allow-origins=*");
                 System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
-                driver = new ChromeDriver(ops);
+                driver = new ChromeDriver(options);
                 //Log.info("You have initialized a Chrome driver");
                 navigate();
             } else if (browser.equalsIgnoreCase("Firefox")) {
@@ -78,7 +78,6 @@ public class TestBase {
             } else {
                 Log.error("There is some error in Browser name");
             }
-
         }
         return driver;
     }

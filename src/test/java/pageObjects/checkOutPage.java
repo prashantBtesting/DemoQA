@@ -36,7 +36,7 @@ public class checkOutPage {
     @FindBy(css = "div[class='cart-preview active'] div div p[class='quantity']")
     public WebElement cartPreviewActiveQuantity;
 
-    @FindBy(css = "div[class='cart-preview active'] div div p[class='amount']")
+     @FindBy(css = "div[class='cart-preview active'] div div p[class='amount']")
     public WebElement cartPreviewActiveTotalPrice;
 
     @FindBy(css = "div[class='cart-preview active'] div div p[class='product-price']")
